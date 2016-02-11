@@ -1,10 +1,12 @@
 class CommentsController < ApplicationController
 
 	before_action :set_post, only: [:create, :edit, :destroy]
-	before_action :set_comment, only: [:update, :destroy]
+	before_action :set_comment, only: [:edit, :update, :destroy]
 
   def create
-    redirect_to post_path(@post) if @post.comments.create(comments_params)
+    comment = @post.comments.create(comments_params)
+    comment.user = current_user
+    redirect_to post_path(@post) if comment.save
   end
 
   def edit
@@ -12,6 +14,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment.update(comments_params)
+    redirect_to post_path(params[:post_id])
   end
 
   def destroy

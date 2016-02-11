@@ -1,4 +1,7 @@
-<p id="notice"><%= notice %></p>
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
 
 <p>
   <strong>Title:</strong>
@@ -12,13 +15,19 @@
 
 <h4>Add comments</h4>
 <div>
-  <%= render 'comments/new' %>
+  <%= form_for ([@post, @post.comments.build]) do |f| %>
+    <%= render partial: 'comments/form', locals: {f: f} %>
+  <% end %>
 </div>
 
 <h4>Comments</h4>
 <ul>
   <% @post.comments.each do |comment|%>
-    <li><%= comment.body %> <%= link_to 'Edit', edit_post_comment_path(@post, comment) %> <%= link_to 'Destroy', [@post, comment], :method => :delete, :confirm => "Are you sure?" %> </li>
+  <%next unless comment.persisted?%>
+    <li><%= comment.body %> |
+      <strong>Author:</strong> <%= comment.user.email %> |
+      <%= link_to 'Edit', edit_post_comment_path(@post, comment) %> |
+      <%= link_to 'Destroy', [@post, comment], :method => :delete, :confirm => "Are you sure?" %> </li>
   <% end %>
 </ul>
 
