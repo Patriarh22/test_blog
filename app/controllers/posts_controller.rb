@@ -1,3 +1,16 @@
+# == Schema Information
+# Schema version: 20160211161853
+#
+# Table name: posts
+#
+#  id         :integer          not null, primary key
+#  title      :string
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  author_id  :integer
+#
+
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
@@ -11,7 +24,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
   end
-
+=begin
   # GET /posts/new
   def new
     @post = Post.new
@@ -61,7 +74,7 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+=end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post

@@ -27,6 +27,8 @@ gem 'devise'
 
 gem 'activeadmin', github: 'activeadmin'
 
+gem 'annotate', github: 'ctran/annotate_models'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

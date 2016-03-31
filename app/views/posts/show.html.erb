@@ -1,6 +1,6 @@
 <p>
   <strong>User:</strong>
-  <%= @post.user.email %>
+  <%= @post.author.email %>
 </p>
 
 <p>
@@ -26,10 +26,8 @@
   <%next unless comment.persisted?%>
     <li><%= comment.body %> |
       <strong>Author:</strong> <%= comment.user.email %> |
-      <%= link_to 'Edit', edit_post_comment_path(@post, comment) %> |
       <%= link_to 'Destroy', [@post, comment], :method => :delete, :confirm => "Are you sure?" %> </li>
   <% end %>
 </ul>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

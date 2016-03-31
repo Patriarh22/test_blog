@@ -1,7 +1,24 @@
+# == Schema Information
+# Schema version: 20160211154639
+#
+# Table name: comments
+#
+#  id         :integer          not null, primary key
+#  post_id    :integer
+#  body       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  user_id    :integer
+#
+
+
+
+
 class CommentsController < ApplicationController
 
 	before_action :set_post, only: [:create, :edit, :destroy]
 	before_action :set_comment, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   def create
     comment = @post.comments.create(comments_params)
